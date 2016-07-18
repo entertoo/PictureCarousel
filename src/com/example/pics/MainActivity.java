@@ -1,10 +1,15 @@
 package com.example.pics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.pics.PicsView.OnLunBoClickListener;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -21,12 +26,15 @@ public class MainActivity extends Activity {
 
 		PicsView picsviewpager = (PicsView) findViewById(R.id.picsviewpager);
 
-		// 设置图片描述标题
-		picsviewpager.setTitles(titles);
-		// 设置图片
-		picsviewpager.setImages(imgs);
+		List<ImageView> imgList = new ArrayList<ImageView>();
+		for(int i = 0; i < imgs.length; i++){
+			ImageView iv = new ImageView(getApplicationContext());
+			iv.setScaleType(ScaleType.FIT_XY);
+			iv.setImageResource(imgs[i]);
+			imgList.add(iv);
+		}
 		// 初始化数据
-		picsviewpager.initData();
+		picsviewpager.setTitlesAndImages(titles, imgList);
 		
 		// 设置点击事件
 		picsviewpager.setOnLunBoClickListener(new OnLunBoClickListener() {

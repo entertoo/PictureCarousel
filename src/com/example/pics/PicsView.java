@@ -13,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,14 +25,14 @@ import android.widget.TextView;
  * @ 修改提交者:$Author$ @ 提交时间:$Date$ @ 当前版本 $Rev$
  * 
  */
-public class PicsView extends RelativeLayout {
+public class PicsView extends RelativeLayout
+{
 	Context context;
-	private ViewPager mPager;
+	private ViewPager mViewPager;
 	private LinearLayout mPointContainer;
 	private TextView mTvTitle;
 
-	private List<ImageView> mListDatas;
-	int[] imgs;
+	List<ImageView> mListDatas = new ArrayList<ImageView>();
 	String[] titles;
 
 	private OnLunBoClickListener onLunBoClickListener;
@@ -41,6 +40,7 @@ public class PicsView extends RelativeLayout {
 
 	Handler handler;
 	private AutoScrollTask mAutoScrollTask;
+	private MyAdapter mMyAdapter;
 
 	public PicsView(Context context) {
 		super(context, null);
@@ -50,32 +50,25 @@ public class PicsView extends RelativeLayout {
 		super(context, attrs);
 		this.context = context;
 		handler = new Handler();
-		View.inflate(context, R.layout.pics_view, this);
-
+		
 		initView();
 	}
 
 	/** 初始化视图 */
 	private void initView() {
-		mPager = (ViewPager) findViewById(R.id.pager);
+		View.inflate(context, R.layout.pics_view, this);
+		
+		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mPointContainer = (LinearLayout) findViewById(R.id.point_container);
 		mTvTitle = (TextView) findViewById(R.id.tv_title);
 		mLl = (LinearLayout) findViewById(R.id.ll);
 	}
 
 	/** 初始化数据，前提是设置图片及文字资源，两者数量一致 */
-	public void initData() {
+	private void initData() {
 		// 初始化数据
-		if (imgs != null && titles != null) {
-			mListDatas = new ArrayList<ImageView>();
-			for (int i = 0; i < imgs.length; i++) {
-				// 给集合添加ImageView
-				ImageView iv = new ImageView(context);
-				iv.setImageResource(imgs[i]);
-				iv.setScaleType(ScaleType.FIT_XY);
-
-				mListDatas.add(iv);
-
+		if (mListDatas != null) {
+			for (int i = 0; i < mListDatas.size(); i++) {
 				// 添加点点
 				View point = new View(context);
 				point.setBackgroundResource(R.drawable.point_normal);
@@ -91,25 +84,21 @@ public class PicsView extends RelativeLayout {
 			}
 		}
 
-		// 设置数据的方式
-		mPager.setAdapter(new MyAdapter());
+		mMyAdapter = new MyAdapter();
+		mViewPager.setAdapter(mMyAdapter);
 
 		// 设置默认选中中间的item
 		int middle = Integer.MAX_VALUE / 2;
 		int extra = middle % mListDatas.size();
 		int item = middle - extra;
 		// 选中第item个
-		mPager.setCurrentItem(item);
-		
-		initEvent();
-
+		mViewPager.setCurrentItem(item);
 	}
 
 	@SuppressWarnings("deprecation")
 	private void initEvent() {
 		// 设置viewPager监听器
-		mPager.setOnPageChangeListener(new OnPageChangeListener() {
-
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			// 回调方法,当viewpager滚动时的回调
 			@Override
 			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -129,7 +118,6 @@ public class PicsView extends RelativeLayout {
 					view.setBackgroundResource(position == i ? R.drawable.point_selected : R.drawable.point_normal);
 				}
 				mTvTitle.setText(titles[position]);
-				
 			}
 
 			@Override
@@ -141,7 +129,7 @@ public class PicsView extends RelativeLayout {
 		// 开启图片自动轮播任务
 		startAutoScroll();
 
-		mPager.setOnTouchListener(new OnTouchListener() {
+		mViewPager.setOnTouchListener(new OnTouchListener() {
 
 			private float mDownX;
 			private float mDownY;
@@ -165,11 +153,11 @@ public class PicsView extends RelativeLayout {
 					float upY = event.getY();
 					long upTime = System.currentTimeMillis();
 					// 设置点击事件
-					if(mDownX == upX && mDownY == upY){
-						if(upTime - mDownTime < 500){
+					if (mDownX == upX && mDownY == upY) {
+						if (upTime - mDownTime < 500) {
 							// 点击
 							System.out.println("点击");
-							onLunBoClickListener.clickLunbo(mPager.getCurrentItem() % mListDatas.size());
+							onLunBoClickListener.clickLunbo(mViewPager.getCurrentItem() % mListDatas.size());
 						}
 					}
 					System.out.println("松开");
@@ -186,7 +174,9 @@ public class PicsView extends RelativeLayout {
 
 	}
 
-	class MyAdapter extends PagerAdapter {
+	/** 图片轮播ViewPager适配器 */
+	class MyAdapter extends PagerAdapter
+	{
 
 		// 页面的数量
 		@Override
@@ -212,10 +202,10 @@ public class PicsView extends RelativeLayout {
 
 			// position： 要加载的位置
 			ImageView iv = mListDatas.get(position);
-			
+
 			// 用来添加要显示的View的
-			mPager.addView(iv);
-			
+			mViewPager.addView(iv);
+
 			// 记录缓存标记--return 标记
 			return iv;
 		}
@@ -227,11 +217,11 @@ public class PicsView extends RelativeLayout {
 			position = position % mListDatas.size();
 
 			ImageView iv = mListDatas.get(position);
-			mPager.removeView(iv);
+			mViewPager.removeView(iv);
 		}
 	}
 
-	// 获取自动轮播任务
+	/** 获取自动轮播任务 */
 	public AutoScrollTask getAutoScrollTask() {
 		if (mAutoScrollTask == null) {
 			synchronized (this) {
@@ -243,8 +233,9 @@ public class PicsView extends RelativeLayout {
 		return mAutoScrollTask;
 	}
 
-	// 自动轮播
-	class AutoScrollTask implements Runnable {
+	/** 自动轮播 */
+	class AutoScrollTask implements Runnable
+	{
 
 		public void start() {
 			handler.postDelayed(this, 1800);
@@ -256,9 +247,9 @@ public class PicsView extends RelativeLayout {
 
 		@Override
 		public void run() {
-			int currentItem = mPager.getCurrentItem();
+			int currentItem = mViewPager.getCurrentItem();
 			currentItem++;
-			mPager.setCurrentItem(currentItem);
+			mViewPager.setCurrentItem(currentItem);
 			// 递归
 			start();
 		}
@@ -284,14 +275,13 @@ public class PicsView extends RelativeLayout {
 		mTvTitle.setVisibility(visibility);
 	}
 
-	/** 设置文字描述数据 */
-	public void setTitles(String[] titles) {
+	/** 设置文字描述和图片数据 */
+	public void setTitlesAndImages(String[] titles, List<ImageView> imgs) {
 		this.titles = titles;
-	}
+		this.mListDatas = imgs;
 
-	/** 设置图片数据 */
-	public void setImages(int[] imgs) {
-		this.imgs = imgs;
+		initData();
+		initEvent();
 	}
 
 	/** 设置监听 */
@@ -299,8 +289,9 @@ public class PicsView extends RelativeLayout {
 		this.onLunBoClickListener = onLunBoClickListener;
 	}
 
-	// 自定义监听接口
-	public interface OnLunBoClickListener {
+	/** 自定义监听接口 */
+	public interface OnLunBoClickListener
+	{
 		void clickLunbo(int position);
 	}
 
