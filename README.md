@@ -62,3 +62,7 @@
 				//picsviewpager.setTvTitleVisibility(View.GONE);
 			}
 		}
+
+4. 演示：
+
+![](gif/pics.gif)
