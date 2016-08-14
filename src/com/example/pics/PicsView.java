@@ -3,6 +3,7 @@ package com.example.pics;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
@@ -41,6 +42,8 @@ public class PicsView extends RelativeLayout
 	Handler handler;
 	private AutoScrollTask mAutoScrollTask;
 	private MyAdapter mMyAdapter;
+	
+	private boolean isScrolling = false;
 
 	public PicsView(Context context) {
 		super(context, null);
@@ -50,14 +53,14 @@ public class PicsView extends RelativeLayout
 		super(context, attrs);
 		this.context = context;
 		handler = new Handler();
-		
+
 		initView();
 	}
 
 	/** 初始化视图 */
 	private void initView() {
 		View.inflate(context, R.layout.pics_view, this);
-		
+
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mPointContainer = (LinearLayout) findViewById(R.id.point_container);
 		mTvTitle = (TextView) findViewById(R.id.tv_title);
@@ -126,15 +129,13 @@ public class PicsView extends RelativeLayout
 			}
 		});
 
-		// 开启图片自动轮播任务
-		startAutoScroll();
-
 		mViewPager.setOnTouchListener(new OnTouchListener() {
 
 			private float mDownX;
 			private float mDownY;
 			private long mDownTime;
 
+			@SuppressLint("ClickableViewAccessibility")
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction()) {
@@ -257,12 +258,18 @@ public class PicsView extends RelativeLayout
 
 	/** 开启自动轮播 */
 	public void startAutoScroll() {
-		getAutoScrollTask().start();
+		if(!isScrolling){
+			getAutoScrollTask().start();
+			isScrolling = true;
+		}
 	}
 
 	/** 停止自动轮播 */
 	public void stopAutoScroll() {
-		getAutoScrollTask().stop();
+		if(isScrolling){
+			getAutoScrollTask().stop();
+			isScrolling = false;
+		}
 	}
 
 	/** 设置背景颜色 */

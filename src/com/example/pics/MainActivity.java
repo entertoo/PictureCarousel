@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 	int[] imgs = { R.drawable.img_0, R.drawable.img_1, R.drawable.img_2, R.drawable.img_3, R.drawable.img_4,
 			R.drawable.img_5 };
 	String[] titles = { "为", "梦", "想", "坚", "持", "呀" };
+	private PicsView mPicsviewpager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
-		PicsView picsviewpager = (PicsView) findViewById(R.id.picsviewpager);
+		mPicsviewpager = (PicsView) findViewById(R.id.picsviewpager);
 
 		List<ImageView> imgList = new ArrayList<ImageView>();
 		for(int i = 0; i < imgs.length; i++){
@@ -34,10 +35,10 @@ public class MainActivity extends Activity {
 			imgList.add(iv);
 		}
 		// 初始化数据
-		picsviewpager.setTitlesAndImages(titles, imgList);
+		mPicsviewpager.setTitlesAndImages(titles, imgList);
 		
 		// 设置点击事件
-		picsviewpager.setOnLunBoClickListener(new OnLunBoClickListener() {
+		mPicsviewpager.setOnLunBoClickListener(new OnLunBoClickListener() {
 			
 			@Override
 			public void clickLunbo(int position) {
@@ -46,8 +47,23 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		// 设置文字的颜色，透明即不可见
 		//picsviewpager.setLlBackgroundAlph(color.transparent);
+		// 设置文字的背景，默认半透明，可以设置不可见
 		//picsviewpager.setTvTitleVisibility(View.GONE);
-
+	}
+	
+	@Override
+	protected void onPause() {
+		// 停止图片轮播
+		mPicsviewpager.stopAutoScroll();
+		super.onPause();
+	}
+	
+	@Override
+	protected void onResume() {
+		// 开启图片轮播
+		mPicsviewpager.startAutoScroll();
+		super.onResume();
 	}
 }
