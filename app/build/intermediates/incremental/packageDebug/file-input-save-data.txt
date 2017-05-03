@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed May 03 11:10:06 CST 2017
+#Wed May 03 11:33:31 CST 2017
 8.set=ANDROID_RESOURCE
 1.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
 1.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_0.jpg
@@ -10,11 +10,11 @@
 5.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_5.jpg
 7.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
 7.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/resources.arsc
-11.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/menu/main.xml
+11.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/layout/pics_view.xml
 11.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
 9.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
-9.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable/point_selected.xml
-13.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_2.jpg
+9.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_1.jpg
+13.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-mdpi-v4/ic_launcher.png
 13.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
 11.set=ANDROID_RESOURCE
 0.set=ANDROID_RESOURCE
@@ -32,12 +32,12 @@
 6.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 6.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
 10.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
-10.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_1.jpg
+10.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/menu/main.xml
 13.set=ANDROID_RESOURCE
 8.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
-8.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/ic_launcher.png
+8.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable/point_selected.xml
 2.set=ANDROID_RESOURCE
-12.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/layout/pics_view.xml
+12.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_2.jpg
 12.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
 14.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_4.jpg
 14.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_

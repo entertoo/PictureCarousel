@@ -1,9 +1,9 @@
 # PictureCarousel
 一个非常简单的图片轮播，可自动轮播，按下和移动停止轮播，外加点击事件
 
-***
+图：
 
-    图：
+![](gif/1.png)![](gif/2.png)
 
 ![](gif/pics.gif)
 
