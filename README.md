@@ -3,7 +3,8 @@
 
 图：
 
-![](gif/1.png)![](gif/2.png)
+![](gif/1.png)
+![](gif/2.png)
 
 ![](gif/pics.gif)
 
