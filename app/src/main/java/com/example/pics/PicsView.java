@@ -276,7 +276,7 @@ public class PicsView extends RelativeLayout {
     }
 
     /**
-     * 设置背景颜色
+     * 设置文字背景颜色
      */
     public void setTitleBackgroundColor(int color) {
         if (mRl != null) {
