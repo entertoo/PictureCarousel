@@ -5,8 +5,7 @@
 
     图：
 
-    ![](gif/pics.gif)
-
+![](gif/pics.gif)
 
 ## 方法：
 
