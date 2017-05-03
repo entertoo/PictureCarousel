@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed May 03 08:53:10 CST 2017
+#Wed May 03 11:10:06 CST 2017
 8.set=ANDROID_RESOURCE
 1.base=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_
 1.file=/Users/haoping/Desktop/face/PictureCarousel-master/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/img_0.jpg

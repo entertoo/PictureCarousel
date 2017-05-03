@@ -9,12 +9,10 @@ int drawable img_4 0x7f020005
 int drawable img_5 0x7f020006
 int drawable point_normal 0x7f020007
 int drawable point_selected 0x7f020008
-int id action_settings 0x7f080005
-int id ll 0x7f080002
+int id action_settings 0x7f080003
 int id pager 0x7f080001
 int id picsviewpager 0x7f080000
-int id point_container 0x7f080004
-int id tv_title 0x7f080003
+int id rl 0x7f080002
 int layout activity_main 0x7f030000
 int layout pics_view 0x7f030001
 int menu main 0x7f070000

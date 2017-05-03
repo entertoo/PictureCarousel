@@ -73,7 +73,7 @@
 				mPicsviewpager.setOnLunBoClickListener(new OnLunBoClickListener() {
 					
 					@Override
-					public void clickLunbo(int position) {
+					public void onClick(int position) {
 						System.out.println("点击有效");
 						Toast.makeText(MainActivity.this, "点击有效，位置为：" + position, Toast.LENGTH_SHORT).show();
 					}
